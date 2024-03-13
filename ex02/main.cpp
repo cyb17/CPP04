@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:50:42 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 17:34:19 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/13 18:16:51 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,15 @@
 
 int main()
 {
-	const Animal* j = new Dog("");
-	const Animal* i = new Cat("");
-	delete j;//should not create a leak
-	delete i;
+	Dog		dog( "Dog" );
+	Dog		copieDog( dog );
+	Cat		cat( "cat" );
+	Cat		copieCat( cat );
+
+	dog.callBrain();
+	copieDog.callBrain();
+	cat.callBrain();
+	copieCat.callBrain();
+	// Animal	animal( "" );
 	return 0;
 }

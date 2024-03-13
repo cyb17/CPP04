@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:36:48 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 15:52:41 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/13 18:12:39 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class	Animal
 		Animal&	operator = ( const Animal& other );
 
 		virtual std::string		getType() const;
-		virtual void			makeSound() const;
+		virtual void			makeSound() const = 0;
 };
 
 #endif
