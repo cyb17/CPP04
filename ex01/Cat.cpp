@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:24:22 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 14:42:06 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/13 17:32:25 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,44 @@
 Cat::Cat( std::string typeName ) : Animal( typeName )
 {
 	this->type = typeName;
+	this->brainPtr = new Brain();
 	std::cout << "Cat constructor called" << std::endl;	
 }
 
 Cat::~Cat()
 {	
+	delete this->brainPtr;
 	std::cout << "Cat destructor called" << std::endl;	
 }
 
 Cat::Cat( const Cat& other ) : Animal( other )
 {
-	std::cout << "Cat copie constructor called" << std::endl;
+	this->brainPtr = new Brain();
 	*this = other;
+	std::cout << "Cat copie constructor called" << std::endl;
 }
 
 Cat&	Cat::operator = ( const Cat& other )
 {
 	if ( this != &other )
+	{
 		this->type = other.type;
+		if (this->brainPtr != NULL)
+			delete this->brainPtr;
+		if (other.brainPtr != NULL)
+			this->brainPtr = new Brain( *other.brainPtr );
+		else
+			this->brainPtr = NULL;
+	}
 	return *this;
 }
 
 void	Cat::makeSound() const
 {
 	std::cout << "Cat : Miaow! Miaow!" << std::endl;
+}
+
+void	Cat::callBrain() const
+{
+	this->brainPtr->listTenIdeas();
 }

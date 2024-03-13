@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:24:22 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 12:01:02 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/13 14:42:31 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ WrongCat::WrongCat( const WrongCat& other ) : WrongAnimal( other )
 
 WrongCat&	WrongCat::operator = ( const WrongCat& other )
 {
-	this->type = other.type;
+	if ( this != &other )
+		this->type = other.type;
 	return *this;
 }
 

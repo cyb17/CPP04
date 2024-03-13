@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/13 11:04:20 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 14:42:17 by yachen           ###   ########.fr       */
+/*   Created: 2024/03/13 10:42:04 by yachen            #+#    #+#             */
+/*   Updated: 2024/03/13 15:52:46 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Animal.hpp"
 #include <iostream>
 
-Dog::Dog( std::string typeName ) : Animal( typeName )
+Animal::Animal( std::string typeName )
 {
 	this->type = typeName;
-	std::cout << "Dog constructor called" << std::endl;	
+	std::cout << "Animal constructor called" << std::endl;
 }
 
-Dog::~Dog()
+Animal::~Animal()
 {	
-	std::cout << "Dog destructor called" << std::endl;	
+	std::cout << "Animal destructor called" << std::endl;	
 }
 
-Dog::Dog( const Dog& other ) : Animal( other )
+Animal::Animal( const Animal& other)
 {
-	std::cout << "Dog copie constructor called" << std::endl;
 	*this = other;
+	std::cout << "Animal copie constructor called" << std::endl;
 }
 
-Dog&	Dog::operator = ( const Dog& other )
+Animal&	Animal::operator = ( const Animal& other )
 {
 	if ( this != &other )
 		this->type = other.type;
 	return *this;
 }
 
-void	Dog::makeSound() const
+void	Animal::makeSound() const
 {
-	std::cout << "Dog : Woaf! Woaf!" << std::endl;
+	std::cout << "Animal : Rien ! Rien !" << std::endl;
+}
+
+std::string	Animal::getType() const
+{
+	return this->type;
 }
