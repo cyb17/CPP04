@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:04:20 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 14:42:17 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/14 10:24:48 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Dog::~Dog()
 
 Dog::Dog( const Dog& other ) : Animal( other )
 {
-	std::cout << "Dog copie constructor called" << std::endl;
+	std::cout << "Dog copy constructor called" << std::endl;
 	*this = other;
 }
 

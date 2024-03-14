@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:24:22 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 14:43:16 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/14 10:24:48 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ WrongCat::~WrongCat()
 
 WrongCat::WrongCat( const WrongCat& other ) : WrongAnimal( other )
 {
-	std::cout << "WrongCat copie constructor called" << std::endl;
+	std::cout << "WrongCat copy constructor called" << std::endl;
 	*this = other;
 }
 

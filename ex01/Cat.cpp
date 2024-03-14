@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:24:22 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/13 17:32:25 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/14 10:24:48 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Cat::Cat( const Cat& other ) : Animal( other )
 {
 	this->brainPtr = new Brain();
 	*this = other;
-	std::cout << "Cat copie constructor called" << std::endl;
+	std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat&	Cat::operator = ( const Cat& other )
