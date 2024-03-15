@@ -6,19 +6,22 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:05:48 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/14 14:06:14 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 11:35:59 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATERIA_SOURCE_HPP
 # define MATERIA_SOURCE_HPP
 
-#include "interfaces/IMateriaSource.hpp"
+#include "IMateriaSource.hpp"
+#include "ICharacter.hpp"
+#include "Cure.hpp"
+#include "Ice.hpp"
 
 class	MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria*	ptrMateria[4];
+		AMateria*	box[4];
 
 	public:
 
@@ -28,7 +31,9 @@ class	MateriaSource : public IMateriaSource
 		~MateriaSource();
 
 		void 		learnMateria( AMateria* materia );
-		AMateria*	createMateria( std::string const & type );
+		void		forgetMateria( int idx );
+		void		takeMateria( int idx, ICharacter& target );
+		AMateria*	createMateria( std::string const& type );
 		
 };
 

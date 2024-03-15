@@ -6,11 +6,11 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:21:21 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/14 11:40:23 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 11:41:48 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "../includes/AMateria.hpp"
 #include <iostream>
 
 AMateria::AMateria( std::string const& type ) : type (type)
@@ -41,7 +41,7 @@ std::string const&	AMateria::getType() const
 	return this->type;
 }
 
-virtual void	AMateria::use( ICharacter& target )
+void	AMateria::use( ICharacter& target )
 {
-	std::cout << "Nothing to do" << std::endl;
+	std::cout << this->getType() << " did nothing to" << target.getName() << std::endl;
 }

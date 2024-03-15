@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
+/*   ICharacter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 11:01:37 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/15 11:58:34 by yachen           ###   ########.fr       */
+/*   Created: 2024/03/15 11:50:28 by yachen            #+#    #+#             */
+/*   Updated: 2024/03/15 11:58:41 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMATERIASOURCE_HPP
-# define IMATERIASOURCE_HPP
+#include "../includes/ICharacter.hpp"
+#include <iostream>
 
-#include "AMateria.hpp"
-
-class IMateriaSource
+ICharacter::ICharacter()
 {
-	public:
-	
-		IMateriaSource();
-		IMateriaSource( const IMateriaSource& other );
-		virtual ~IMateriaSource();
-		virtual void learnMateria( AMateria* ) = 0;
-		virtual AMateria* createMateria( std::string const & type ) = 0;
-};
+	std::cout << "ICharacter constructor called" << std::endl;
+}
 
-#endif
+ICharacter::ICharacter( const ICharacter& other )
+{
+	*this = other;
+	std::cout << "ICharacter copy constructor called" << std::endl;
+}
+
+ICharacter::~ICharacter()
+{
+	std::cout << "ICharacter destructor called" << std::endl;	
+}

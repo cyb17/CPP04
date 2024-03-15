@@ -6,11 +6,11 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:56:15 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/14 11:58:13 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 11:24:32 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cure.hpp"
+#include "../includes/Cure.hpp"
 #include <iostream>
 
 Cure::Cure( std::string const& type ) : AMateria( type )
@@ -18,14 +18,15 @@ Cure::Cure( std::string const& type ) : AMateria( type )
 	std::cout << "Cure constructor called" << std::endl;
 }
 
-Cure::Cure( const Cure& other );
+Cure::Cure( const Cure& other ) : AMateria( other )
 {
 	*this = other;
 	std::cout << "Cure copy constructor called" << std::endl;
 }
-Cure&	Cure::operator = ( const Cure& other );
+Cure&	Cure::operator = ( const Cure& other )
 {
-	AMateria::operator = ( other );
+	if (this != &other)
+		AMateria::operator = ( other );
 	return *this;
 }
 

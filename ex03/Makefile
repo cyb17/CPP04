@@ -6,7 +6,7 @@
 #    By: yachen <yachen@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 14:21:49 by yachen            #+#    #+#              #
-#    Updated: 2024/03/14 18:11:31 by yachen           ###   ########.fr        #
+#    Updated: 2024/03/15 11:56:11 by yachen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC = c++
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRC = main.cpp
+SRC_FILE = main AMateria Character Cure Ice MateriaSource IMateriaSource ICharacter
+
+SRC = $(addsuffix .cpp, $(addprefix srcs/, $(SRC_FILE)))
 
 OBJ = $(SRC:.cpp=.o)
 

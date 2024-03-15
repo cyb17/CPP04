@@ -6,19 +6,20 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:44:40 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/14 16:04:00 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 11:12:34 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-#include "interfaces/ICharacter.hpp"
+#include "ICharacter.hpp"
+#include "MateriaSource.hpp"
 
 class	Character : public ICharacter
 {
 	private:
-		const std::string		name;
+		std::string				name;
 		MateriaSource*			MateriaSource;
 
 	public:
@@ -29,9 +30,9 @@ class	Character : public ICharacter
 		~Character();
 
 		std::string const&	getName() const;
-		void 				equip(AMateria* m);
-		void 				unequip(int idx);
-		void 				use(int idx, ICharacter& target);
+		void 				equip( AMateria* m );
+		void 				unequip( int idx );
+		void 				use( int idx, ICharacter& target );
 };
 
 #endif

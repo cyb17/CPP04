@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:36:31 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/14 11:43:35 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 10:46:45 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ICE_HPP
 
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 
 class	Ice : public AMateria
 {
