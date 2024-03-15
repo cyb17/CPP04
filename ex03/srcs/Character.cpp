@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:59:36 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/15 12:05:39 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 18:38:34 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,26 @@ std::string const&	Character::getName() const
 void	Character::equip(AMateria* m)
 {
 	MateriaSource->learnMateria( m );
+	for (int i = 0; i < 4; i++)
+	{
+		if (!this->equiped[i] && this->lastLearned)
+		{
+			this->equiped[i] = this->lastLearned;
+			std::cout << "\e[33;1m" << this->lastlearned->getType() << ": equiped with success"  << "\e[0m" << std::endl;
+		}
+	}
+	std::cout << "\e[91m" << "There is not a empty equipedBox to equipe new materia" << "\e[0m" << std::endl;
 }
 
 void 	Character::unequip( int idx )
 {
-	MateriaSource->forgetMateria( idx );
+	if (idx > 3)
+	{}
+	// MateriaSource->forgetMateria( idx );
 }
 
 void	Character::use( int idx, ICharacter& target )
 {
-	MateriaSource->takeMateria( idx, target );
+	MateriaSource->useMateria( idx, target );
 }
 

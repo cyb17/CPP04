@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:05:48 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/15 11:35:59 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 18:24:44 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 class	MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria*	box[4];
+		AMateria*	equiped[4];
+		AMateria*	learned[10];
+		AMateria*	unequiped[10];
+		AMateria*	lastLearned;
 
 	public:
 
@@ -32,9 +35,10 @@ class	MateriaSource : public IMateriaSource
 
 		void 		learnMateria( AMateria* materia );
 		void		forgetMateria( int idx );
-		void		takeMateria( int idx, ICharacter& target );
+		void		useMateria( int idx, ICharacter& target );
 		AMateria*	createMateria( std::string const& type );
 		
 };
+
 
 #endif

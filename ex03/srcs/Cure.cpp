@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:56:15 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/15 11:24:32 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/15 17:19:26 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ AMateria*	Cure::clone() const
 
 void 		Cure::use( ICharacter& target )
 {
-	std::cout << this->getType() << " * heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << "\e[32;1m" << this->getType() << " * heals " << target.getName() << "'s wounds *" << "\e[0m" << std::endl;
 }
