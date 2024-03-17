@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:05:48 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/15 18:24:44 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 12:41:44 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 
+#define EQ_SIZE 4
+#define UNEQ_SIZE 10
+
 class	MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria*	equiped[4];
-		AMateria*	learned[10];
-		AMateria*	unequiped[10];
+		AMateria*	equiped[EQ_SIZE];
+		AMateria*	learned[UNEQ_SIZE];
+		AMateria*	unequiped[UNEQ_SIZE];
 		AMateria*	lastLearned;
 
 	public:
@@ -34,7 +37,9 @@ class	MateriaSource : public IMateriaSource
 		~MateriaSource();
 
 		void 		learnMateria( AMateria* materia );
-		void		forgetMateria( int idx );
+		void		forgetMateria( int idx, int falg );
+		void		equip( AMateria* m );
+		void		unequip( int idx );
 		void		useMateria( int idx, ICharacter& target );
 		AMateria*	createMateria( std::string const& type );
 		
