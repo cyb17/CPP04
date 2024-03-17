@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:44:40 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/15 11:12:34 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 15:14:29 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class	Character : public ICharacter
 		void 				equip( AMateria* m );
 		void 				unequip( int idx );
 		void 				use( int idx, ICharacter& target );
+		void				getMateriaSourceInfo() const;
 };
 
 #endif

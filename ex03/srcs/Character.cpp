@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:59:36 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/17 12:45:02 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 15:15:10 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,7 @@ void	Character::use( int idx, ICharacter& target )
 	MateriaSource->useMateria( idx, target );
 }
 
+void	Character::getMateriaSourceInfo() const
+{
+	MateriaSource->getMateriaSourceInfo();
+}

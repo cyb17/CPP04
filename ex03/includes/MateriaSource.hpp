@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:05:48 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/17 13:03:31 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 15:14:07 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ class	MateriaSource : public IMateriaSource
 		void		unequip( int idx );
 		void		useMateria( int idx, ICharacter& target );
 		AMateria*	createMateria( std::string const& type );
+		void		getMateriaSourceInfo() const;
 		
 };
 

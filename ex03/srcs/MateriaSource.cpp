@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:02:22 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/17 13:11:48 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 15:54:07 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ MateriaSource::MateriaSource() : IMateriaSource()
 
 MateriaSource::MateriaSource( const MateriaSource& other )
 {
+	for (int i = 0; i < UNEQ_SIZE; i++)
+	{
+		if (i < EQ_SIZE)
+			this->equiped[i] = NULL;
+		this->unequiped[i] = NULL;
+	}
+	this->lastLearned = NULL;
 	*this = other;
 	std::cout << "MateriaSource copy constructor called" << std::endl;
 }
@@ -35,7 +42,7 @@ MateriaSource&	MateriaSource::operator = ( const MateriaSource& other )
 {
 	if (this != &other)
 	{
-		for (int i = 0; i < UNEQ_SIZE; i++)
+		for (int i = 0; i < UNEQ_SIZE ; i++)
 		{
 			if (i < EQ_SIZE)
 			{
@@ -77,7 +84,7 @@ void		MateriaSource::learnMateria( AMateria* materia )
 		{
 			this->equiped[i] = materia;
 			this->lastLearned = equiped[i];
-			std::cout << "\e[33;1m" << this->equiped[i]->getType() << ": Learned with success"  << "\e[0m" << std::endl;
+			std::cout << "\e[33;1m" << this->equiped[i]->getType() << ": Learned with success: " << "box: " << i << "\e[0m" << std::endl;
 			return ;
 		}
 		else if (!this->equiped[i] && materia->getType() != "ice" && materia->getType() != "cure")
@@ -90,7 +97,8 @@ void		MateriaSource::learnMateria( AMateria* materia )
 	}
 	this->lastLearned = NULL;
 	delete materia;
-	std::cout << "\e[91m" << "There is no empty equipedBox to learn new materia" << "\e[0m" << std::endl;
+	std::cout << "\e[91m" << "There is no empty equipedBox to learn or equipe new materia" << "\e[0m" << std::endl;
+	std::cout << "\e[91m" << "You can unequiped useless materias" << "\e[0m" << std::endl;
 }
 
 void		MateriaSource::forgetMateria( int idx )
@@ -103,7 +111,7 @@ void		MateriaSource::forgetMateria( int idx )
 		std::cout << "\e[91m" << "There is no materia to be forgotten in this indexBox :" << idx << "\e[0m" << std::endl;
 	else
 	{
-		std::cout << "\e[31;1m" << tmp->getType() << ": Forget with success" << "\e[0m" << std::endl;
+		std::cout << "\e[91m" << tmp->getType() << ": Forget with success" << "\e[0m" << std::endl;
 		delete tmp;
 		tmp = NULL;
 	}
@@ -113,11 +121,7 @@ void	MateriaSource::equip( AMateria* m )
 {
 	this->learnMateria( m );
 	if (!this->lastLearned)
-	{
-		std::cout << "\e[91m" << "There is no empty equipedBox to equipe new materia" << "\e[0m" << std::endl;
-		std::cout << "\e[91m" << "You can unequiped useless materias" << "\e[0m" << std::endl;
 		return ;
-	}
 	std::cout << "\e[33;1m" << this->lastLearned->getType() << ": Equiped with success"  << "\e[0m" << std::endl;
 }
 
@@ -133,8 +137,9 @@ void 	MateriaSource::unequip( int idx )
 		{
 			if (!this->unequiped[i])
 			{
-				this->unequiped[i] = this->equiped[i];
-				this->equiped[i] = NULL;
+				std::cout << "\e[33;1m" << this->equiped[i]->getType() << ": Unequiped with success: box: " << i << "\e[0m" << std::endl;
+				this->unequiped[i] = this->equiped[idx];
+				this->equiped[idx] = NULL;
 				return ;
 			}
 		}
@@ -148,7 +153,7 @@ void		MateriaSource::useMateria( int idx, ICharacter& target )
 	if (idx < 0 || idx > EQ_SIZE - 1)
 		std::cout << "\e[91m" << "This index: " << idx << " of equipedBox doesn't existe" << "\e[0m" << std::endl;
 	else if (!this->equiped[idx])
-		std::cout << "\e[91m" << "There is no materia to be used in this index :" << idx << " of learnedBox" << "\e[0m" << std::endl;
+		std::cout << "\e[91m" << "There is no materia to be used in this indexbox :" << idx << "\e[0m" << std::endl;
 	else
 		this->equiped[idx]->use( target );
 }
@@ -167,4 +172,26 @@ AMateria*	MateriaSource::createMateria( std::string const & type )
 		return 0;
 	}
 	return ptr;
+}
+
+void		MateriaSource::getMateriaSourceInfo() const
+{
+	for (int i = 0; i < EQ_SIZE; i++)
+	{
+		if (this->equiped[i])
+			std::cout << "\e[95m" << "EquipedBox " << i << ": " << this->equiped[i]->getType() << "\e[0m" << std::endl;
+		else
+			std::cout << "\e[95m" << "EquipedBox " << i << ": NULL" << "\e[0m" << std::endl;
+	}
+	for (int j = 0; j < UNEQ_SIZE; j++)
+	{
+		if (this->unequiped[j])
+			std::cout << "\e[95m" << "UnequipedBox " << j << ": " << this->unequiped[j]->getType() << "\e[0m" << std::endl;
+		else
+			std::cout << "\e[95m" << "UnequipedBox " << j << ": NULL" << "\e[0m" << std::endl;
+	}
+	if (this->lastLearned)
+		std::cout << "\e[95m" << "lastLearned: " << this->lastLearned->getType() << "\e[0m" << std::endl;
+	else
+		std::cout << "\e[95m" << "lastLearned: NULL" << "\e[0m" << std::endl;
 }
