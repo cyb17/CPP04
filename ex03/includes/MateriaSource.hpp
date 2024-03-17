@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:05:48 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/17 12:41:44 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 13:03:31 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ class	MateriaSource : public IMateriaSource
 {
 	private:
 		AMateria*	equiped[EQ_SIZE];
-		AMateria*	learned[UNEQ_SIZE];
 		AMateria*	unequiped[UNEQ_SIZE];
 		AMateria*	lastLearned;
 
@@ -37,7 +36,7 @@ class	MateriaSource : public IMateriaSource
 		~MateriaSource();
 
 		void 		learnMateria( AMateria* materia );
-		void		forgetMateria( int idx, int falg );
+		void		forgetMateria( int idx );
 		void		equip( AMateria* m );
 		void		unequip( int idx );
 		void		useMateria( int idx, ICharacter& target );

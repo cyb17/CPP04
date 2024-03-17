@@ -6,7 +6,7 @@
 /*   By: yachen <yachen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:02:22 by yachen            #+#    #+#             */
-/*   Updated: 2024/03/17 12:57:54 by yachen           ###   ########.fr       */
+/*   Updated: 2024/03/17 13:11:48 by yachen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ MateriaSource::MateriaSource() : IMateriaSource()
 	{
 		if (i < EQ_SIZE)
 			this->equiped[i] = NULL;
-		this->learned[i] = NULL;
 		this->unequiped[i] = NULL;
 	}
 	this->lastLearned = NULL;
@@ -47,12 +46,6 @@ MateriaSource&	MateriaSource::operator = ( const MateriaSource& other )
 				else
 					this->equiped[i] = NULL;
 			}
-			if (this->learned[i] != NULL)
-				delete this->learned[i];
-			if (other.learned[i])
-				this->learned[i] = other.learned[i]->clone();
-			else
-				this->learned[i] = NULL;
 			if (this->unequiped[i] != NULL)
 				delete this->unequiped[i];
 			if (other.unequiped[i])
@@ -72,8 +65,6 @@ MateriaSource::~MateriaSource()
 			delete this->equiped[i];
 		if (this->unequiped[i])
 			delete this->unequiped[i];
-		if (this->learned[i])
-			delete this->learned[i];
 	}
 	std::cout << "MateriaSource destructor called" << std::endl;	
 }
@@ -93,24 +84,21 @@ void		MateriaSource::learnMateria( AMateria* materia )
 		{
 			std::cout << "\e[91m" << materia->getType() << ": Learn failed: unknown materia type" << "\e[0m" << std::endl;
 			this->lastLearned = NULL;
+			delete materia;
 			return ;
 		}
 	}
 	this->lastLearned = NULL;
+	delete materia;
 	std::cout << "\e[91m" << "There is no empty equipedBox to learn new materia" << "\e[0m" << std::endl;
-	// std::cout << "\e[91m" << "You can use : forgetMateria(flag = 0) to delete old learned materias" << "\e[0m" << std::endl;
 }
 
-void		MateriaSource::forgetMateria( int idx, int flag )
+void		MateriaSource::forgetMateria( int idx )
 {
-	AMateria*	tmp = NULL;
+	AMateria*	tmp = this->unequiped[idx];
 
 	if (idx < 0 || idx > UNEQ_SIZE - 1 )
 		std::cout << "\e[91m" << "This indexBox: " << idx << " doesn't existe" << "\e[0m" << std::endl;
-	else if (flag == 0)
-		tmp = this->learned[idx];
-	else if (flag == 1)
-		tmp = this->unequiped[idx];
 	if (!tmp)
 		std::cout << "\e[91m" << "There is no materia to be forgotten in this indexBox :" << idx << "\e[0m" << std::endl;
 	else
@@ -126,14 +114,6 @@ void	MateriaSource::equip( AMateria* m )
 	this->learnMateria( m );
 	if (!this->lastLearned)
 	{
-	// for (int i = 0; i < EQ_SIZE; i++)
-	// {
-		// if (!this->equiped[i])
-		// {
-			// this->equiped[i] = this->lastLearned;
-			// std::cout << "\e[33;1m" << this->lastLearned->getType() << ": Equiped with success"  << "\e[0m" << std::endl;
-		// }
-	// }
 		std::cout << "\e[91m" << "There is no empty equipedBox to equipe new materia" << "\e[0m" << std::endl;
 		std::cout << "\e[91m" << "You can unequiped useless materias" << "\e[0m" << std::endl;
 		return ;
